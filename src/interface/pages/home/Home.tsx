@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "../../store/main-root/root";
-import { fetchHome } from "../../store/slicer/home";
-import imag from "../../assets/home.jpg";
-import home1 from "../../assets/housee.jpg";
+import { RootState, AppDispatch } from "../../../usecase/store/main-root/root";
+import { fetchHome } from "../../../usecase/store/slicer/home";
+import Input from '../../../interface/components/commonComponents/Input';
+import imag from "../../../uiframe/assets/home.jpg";
+import home1 from "../../../uiframe/assets/housee.jpg";
+import Card from "../../../interface/components/commonComponents/Card"
 
 
 
@@ -24,17 +26,17 @@ const Home: React.FC = () => {
   }
 
   const gotoDetail = (homeItem: any) => {
-    navigate("/detail", { state: { source: 'ComponentA', data: homeItem }  });
+    navigate("/detail", { state: { source: 'ComponentA', data: homeItem } });
   };
 
-  const filteredHomes : any = home?.filter((item) =>
+  const filteredHomes: any = home?.filter((item) =>
     item.name.toLowerCase().includes(filterText.toLowerCase()) ||
     item.address.toLowerCase().includes(filterText.toLowerCase()) ||
     item.state.toLowerCase().includes(filterText.toLowerCase())
-  ); 
+  );
 
   const handleSearch = () => {
-    navigate("/search-page",{state:filterText})
+    navigate("/search-page", { state: filterText })
   }
 
   return (
@@ -80,15 +82,15 @@ const Home: React.FC = () => {
         </div>
         <div className="w-full flex justify-center mt-2">
           <div className="w-11/12 md:w-2/3 lg:w-1/3 flex justify-center items-center border-2 bg-white rounded-full cursor-pointer">
-            <input
+            <Input
+              className="flex justify-center h-16 w-[78%] border-0 outline-0 rounded-full pl-2 text-xl shadow-none"
               type="text"
-              className="flex justify-center h-16 w-4/5 border-0 outline-0 rounded-full pl-2 text-xl"
               placeholder="Address, School, City, Zip or ...Neighborhood"
               value={filterText}
-              onChange={(e) => setFilterText(e.target.value)}
+              onChange={(e: any) => setFilterText(e.target.value)}
             />
             <div className="ml-4 h-14 w-14 mr-1 bg-gray-800 rounded-full hover:bg-gray-700 flex justify-center items-center">
-              <IoSearch className="text-white text-2xl" onClick={handleSearch}/>
+              <IoSearch className="text-white text-2xl" onClick={handleSearch} />
             </div>
           </div>
         </div>
@@ -102,43 +104,18 @@ const Home: React.FC = () => {
         ) : filteredHomes?.length > 0 ? (
           <div className="container mx-auto mb-8">
             <div className="flex justify-center items-center flex-wrap gap-4">
-              {filteredHomes?.map((item : any) => (
-                <div key={item.id}>
-                  <div
-                    className="flex w-72 cursor-pointer rounded-lg h-80 shadow-md flex-wrap"
-                    onClick={() => gotoDetail(item)}
-                  >
-                    <div className="w-full h-60">
-                      <div
-                        style={{ backgroundImage: `url(${imag})` }}
-                        className="w-full h-48 rounded-t-lg object-cover bg-no-repeat bg-cover"
-                      >
-                        <p className="text-blue-500 font-medium p-2">
-                          {item.name}
-                        </p>
-                      </div>
-                      <div className="p-2">
-                        <h1 className="text-blue-500 font-medium">
-                          ${item.price}
-                        </h1>
-                      </div>
-                      <div className="flex opacity-80">
-                        <div className="ml-2">
-                          <p>{item.bedrooms}-Bed</p>
-                        </div>
-                        <div className="ml-2">
-                          <p>{item.bathrooms}-Bath</p>
-                        </div>
-                      </div>
-                      <div className="ml-2 opacity-80">
-                        Area {item.squareFeetArea}sqft
-                      </div>
-                      <div className="text-blue-500 ml-2">
-                        {item.address},{item.state}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              {filteredHomes.map(item => (
+                <Card
+                  key={item.id}
+                  title={item.name}
+                  price={item.price}
+                  bedrooms={item.bedroom}
+                  bathrooms={item.bathroom}
+                  area={item.squarefeet}
+                  address={`${item.location}, CA`}
+                  imageUrl={imag}
+                  onClick={() => gotoDetail(item)}
+                />
               ))}
             </div>
           </div>

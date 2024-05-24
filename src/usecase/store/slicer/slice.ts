@@ -3,10 +3,11 @@ import axios from "axios";
 
 interface Data {
   id: number;
+  name: string;
   price: number;
-  area_square_feet: number;
-  bathroom_number: number;
-  bedroom_number: number;
+  squarefeet: number;
+  bathroom: number;
+  bedroom: number;
   image: string;
   location: string;
 }
@@ -26,7 +27,7 @@ export const api = createAsyncThunk<Data[], void, { rejectValue: string }>(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.get<Data[]>(
-        "https://ee6886d1-783c-47b2-898f-1ede65cb2de1.mock.pstmn.io"
+        "https://979c1b97-aea9-464d-b733-0777349b6481.mock.pstmn.io"
       );
       return data;
     } catch (error) {

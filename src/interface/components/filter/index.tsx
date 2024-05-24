@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom'
-import { fetchHome } from '../../store/slicer/home';
+import { fetchHome } from '../../store/slicer/Home';
 import { RootState, AppDispatch } from "../../store/main-root/root";
 
 const FilterComponent = () => {
