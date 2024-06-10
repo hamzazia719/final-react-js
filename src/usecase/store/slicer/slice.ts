@@ -1,16 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-
-interface Data {
-  id: number;
-  name: string;
-  price: number;
-  squarefeet: number;
-  bathroom: number;
-  bedroom: number;
-  image: string;
-  location: string;
-}
+import { Data } from "../../../entities";
 
 interface ApiState {
   data: Data[] | null;

@@ -83,7 +83,7 @@ const Home: React.FC = () => {
         <div className="w-full flex justify-center mt-2">
           <div className="w-11/12 md:w-2/3 lg:w-1/3 flex justify-center items-center border-2 bg-white rounded-full cursor-pointer">
             <Input
-              className="flex justify-center h-16 w-[78%] border-0 outline-0 rounded-full pl-2 text-xl shadow-none"
+              className="flex justify-center h-16 w-[80%] border-0 outline-0 rounded-full pl-2 text-xl shadow-none"
               type="text"
               placeholder="Address, School, City, Zip or ...Neighborhood"
               value={filterText}

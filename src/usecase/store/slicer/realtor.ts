@@ -1,16 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-
-interface Realtor {
-  id: number;
-  name: string;
-  title: string;
-  for_sale: number;
-  sold: number;
-  experience: string;
-  phone_number: string;
-  address: string;
-}
+import { Realtor } from "../../../entities";
 
 interface RealtorState {
   realtor: Realtor[] | null;

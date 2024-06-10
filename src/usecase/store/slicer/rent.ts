@@ -1,16 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Rent } from "../../../entities";
 
-interface Rent {
-  id: number;
-  name: string;
-  price: number;
-  squareFeetArea: number;
-  bathrooms: number;
-  bedrooms: number;
-  images: string;
-  streetAddress: string;
-}
 
 interface RentState {
   rent: Rent[] | null;
